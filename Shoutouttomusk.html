@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TESLA X Geekble</title>
+</head>
+    <style> 
+    body {background: #ffffff;}
+    </style>
+<body>
+    
+    <script>
+        const api_url1 = 'https://api.thingspeak.com/apps/thinghttp/send_request?api_key=MQ06PLWYWVJ9PGTF';
+                        // 한주당 가격
+        const api_url2 = 'https://api.thingspeak.com/apps/thinghttp/send_request?api_key=EOJ8LVY4I65CNAPP';
+                        // 변동가
+// var box = document.getElementById("box");
+// box.style.backgroundColor = "red";
+// object.style.fontFamily = "font1, font2, etc.|initial|inherit"
+
+
+        async function getData(){
+            const response1 = await fetch(api_url1);
+            var T1 = await response1.text();;
+            
+            const response2 = await fetch(api_url2);
+            var T2 = await response2.text();
+            
+            console.log(T1);
+            console.log(T2);
+            
+            document.writeln('<h1 style="font-size: 4em; text-align: center; color: white; font-family: Comic Sans;">' + '$' + T1 + '</h1>');
+            document.writeln('<h1 style="font-size: 2em; text-align: center; font-family: Times New Roman; color: white;">' + '$' + T2 + '</h1>');
+            
+            if(T2>0) document.querySelector("body").style.background = "#ee5253";
+            else document.querySelector("body").style.background = "#154cff";
+            
+        }
+       
+        getData();
+    
+    </script>
+
+</body>
+</html>
